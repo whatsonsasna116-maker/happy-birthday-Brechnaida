@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Brechnaida</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  min-height:100vh;
+  overflow-x:hidden;
+  text-align:center;
+  color:#fff7fa;
+  font-family:'Playfair Display', serif;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,105,180,.18), transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(255,168,110,.12), transparent 35%),
+    linear-gradient(180deg,#09040b,#170818,#241027,#09040b);
+}
+
+/* floating hearts */
+.hearts span{
+  position:fixed;
+  bottom:-20px;
+  color:#ff6fa8;
+  font-size:22px;
+  animation:rise 8s linear infinite;
+  opacity:.7;
+  z-index:1;
+}
+
+.hearts span:nth-child(1){left:10%; animation-delay:0s;}
+.hearts span:nth-child(2){left:25%; animation-delay:2s;}
+.hearts span:nth-child(3){left:45%; animation-delay:4s;}
+.hearts span:nth-child(4){left:65%; animation-delay:1s;}
+.hearts span:nth-child(5){left:85%; animation-delay:3s;}
+
+@keyframes rise{
+  from{transform:translateY(0) scale(.7); opacity:.8;}
+  to{transform:translateY(-110vh) scale(1.4); opacity:0;}
+}
+
+section{
+  min-height:100vh;
+  padding:60px 25px;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  position:relative;
+  border-bottom:1px solid rgba(255,105,180,.35);
+}
+
+section.active{
+  display:flex;
+}
+
+h1{
+  font-family:'Great Vibes', cursive;
+  font-size:4.5rem;
+  color:#ffd1e5;
+  text-shadow:
+    0 0 10px #ff6fa8,
+    0 0 25px #ff3f8e,
+    0 0 45px #ff5fa2;
+  margin-bottom:20px;
+}
+
+h2{
+  letter-spacing:8px;
+  color:#e6c98b;
+  margin-bottom:25px;
+}
+
+p{
+  max-width:750px;
+  font-size:1.25rem;
+  line-height:1.7;
+  text-shadow:0 0 8px rgba(0,0,0,.5);
+}
+
+button{
+  margin-top:25px;
+  padding:14px 35px;
+  border-radius:30px;
+  border:1px solid rgba(255,255,255,.4);
+  background:linear-gradient(180deg,#e06b93,#a83360);
+  color:white;
+  font-weight:bold;
+  font-family:'Playfair Display', serif;
+  cursor:pointer;
+  box-shadow:
+    0 0 12px rgba(255,105,180,.7),
+    inset 0 0 8px rgba(255,255,255,.2);
+  transition:.3s;
+}
+
+button:hover{
+  transform:scale(1.07);
+  background:linear-gradient(180deg,#ff8bb6,#c94475);
+}
+
+/* real decorations */
+.decor{
+  position:absolute;
+  z-index:2;
+  pointer-events:none;
+  filter:drop-shadow(0 0 15px rgba(255,105,180,.45));
+}
+
+.balloon-left{
+  left:20px;
+  top:40px;
+  width:230px;
+  animation:float 4s ease-in-out infinite;
+}
+
+.balloon-right{
+  right:20px;
+  top:40px;
+  width:230px;
+  animation:float 5s ease-in-out infinite;
+}
+
+.cake{
+  left:60px;
+  bottom:40px;
+  width:300px;
+}
+
+.flowers{
+  right:70px;
+  bottom:45px;
+  width:360px;
+}
+
+.gift{
+  width:260px;
+  margin-top:35px;
+  animation:giftGlow 2s infinite alternate;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-18px);}
+}
+
+@keyframes giftGlow{
+  from{filter:drop-shadow(0 0 10px #ff6fa8);}
+  to{filter:drop-shadow(0 0 30px #ff9fc7);}
+}
+
+/* gallery */
+.gallery{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:25px;
+  margin-top:25px;
+}
+
+.gallery img{
+  width:230px;
+  height:260px;
+  object-fit:cover;
+  border-radius:18px;
+  border:2px solid #c94f82;
+  box-shadow:
+    0 0 15px rgba(255,105,180,.45),
+    0 10px 30px rgba(0,0,0,.5);
+  transition:.3s;
+}
+
+.gallery img:hover{
+  transform:scale(1.06);
+}
+
+/* videos */
+.video-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:25px;
+  width:100%;
+  max-width:1100px;
+  margin-top:25px;
+}
+
+video{
+  width:100%;
+  border-radius:18px;
+  border:2px solid #c94f82;
+  box-shadow:0 0 18px rgba(255,105,180,.45);
+}
+
+/* final heart */
+.big-heart{
+  font-size:6rem;
+  margin-top:30px;
+  color:#ff8fbd;
+  text-shadow:0 0 30px #ff4f9a;
+  animation:pulse 1.2s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.15);}
+}
+
+@media(max-width:800px){
+  h1{font-size:3.2rem;}
+
+  .balloon-left,
+  .balloon-right{
+    width:130px;
+    opacity:.75;
+  }
+
+  .cake,
+  .flowers{
+    position:relative;
+    left:auto;
+    right:auto;
+    bottom:auto;
+    width:230px;
+    margin-top:25px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="hearts">
+  <span>❤</span>
+  <span>💕</span>
+  <span>💖</span>
+  <span>❤</span>
+  <span>💕</span>
+</div>
+
+<audio id="music" loop>
+  <source src="music/happy.mp3" type="audio/mpeg">
+</audio>
+
+<section class="active" id="welcome">
+  <img src="images/balloon-left.png" class="decor balloon-left">
+  <img src="images/balloon-right.png" class="decor balloon-right">
+
+  <h1>A Special Surprise♡</h1>
+  <p>I made this little gift just for you.</p>
+
+  <button onclick="startGift()">OPEN YOUR GIFT 🎁</button>
+
+  <img src="images/gift.png" class="gift">
+
+  <img src="images/cake.png" class="decor cake">
+  <img src="images/flowers.png" class="decor flowers">
+</section>
+
+<section id="message">
+  <img src="images/flowers.png" class="decor flowers">
+
+  <h1>Happy Birthday♡</h1>
+  <h2>BRECHNAIDA</h2>
+
+  <p>
+    Wishing you a beautiful birthday filled with love, happiness, laughter,
+    and God’s blessings. May this new year of life bring you peace, success,
+    joy, and unforgettable memories.
+  </p>
+
+  <p style="font-family:'Great Vibes', cursive; font-size:2rem; color:#ffd1e5; margin-top:20px;">
+    Enjoy your special day ❤
+  </p>
+
+  <button onclick="showSection('photos')">SEE YOUR PHOTOS 📸</button>
+</section>
+
+<section id="photos">
+  <h2>BEAUTIFUL MEMORIES</h2>
+
+  <div class="gallery">
+    <img src="images/photo1.jpg">
+    <img src="images/photo2.jpg">
+    <img src="images/photo3.jpg">
+    <img src="images/photo4.jpg">
+  </div>
+
+  <button onclick="showSection('videos')">WATCH YOUR VIDEOS 🎥</button>
+</section>
+
+<section id="videos">
+  <h2>BIRTHDAY VIDEOS</h2>
+
+  <div class="video-grid">
+    <video controls><source src="videos/birthday1.mp4" type="video/mp4"></video>
+    <video controls><source src="videos/birthday2.mp4" type="video/mp4"></video>
+    <video controls><source src="videos/birthday3.mp4" type="video/mp4"></video>
+    <video controls><source src="videos/birthday4.mp4" type="video/mp4"></video>
+    <video controls><source src="videos/birthday5.mp4" type="video/mp4"></video>
+    <video controls><source src="videos/birthday6.mp4" type="video/mp4"></video>
+  </div>
+
+  <button onclick="showSection('final')">FINAL SURPRISE ✨</button>
+</section>
+
+<section id="final">
+  <img src="images/balloon-left.png" class="decor balloon-left">
+  <img src="images/cake.png" class="decor cake">
+
+  <h1>Make a Wish</h1>
+
+  <p>
+    Close your eyes, make a wish from your heart, and may every dream you have
+    begin to come true.
+  </p>
+
+  <div class="big-heart">♡</div>
+
+  <p>
+    Happy Birthday, Brechnaida. May God continue to bless you with love,
+    happiness, good health, success, and endless beautiful moments. ❤️🎂🎉
+  </p>
+</section>
+
+<script>
+const music = document.getElementById("music");
+
+function showSection(id){
+    document.querySelectorAll("section").forEach(section=>{
+        section.classList.remove("active");
+    });
+
+    document.getElementById(id).classList.add("active");
+    window.scrollTo(0,0);
+}
+
+function startGift(){
+    music.play();
+    showSection("message");
+}
+
+const videos = document.querySelectorAll("video");
+
+videos.forEach(video=>{
+
+    video.addEventListener("play",()=>{
+        music.pause();
+    });
+
+    video.addEventListener("pause",()=>{
+        if(!video.ended){
+            music.play();
+        }
+    });
+
+    video.addEventListener("ended",()=>{
+        music.play();
+    });
+
+});
+</script>
+
+</body>
+</html>
