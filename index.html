@@ -8,11 +8,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&display=swap');
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
   min-height:100vh;
@@ -20,33 +16,10 @@ body{
   text-align:center;
   color:#fff7fa;
   font-family:'Playfair Display', serif;
-
   background:
     radial-gradient(circle at 20% 20%, rgba(255,105,180,.18), transparent 30%),
     radial-gradient(circle at 80% 80%, rgba(255,168,110,.12), transparent 35%),
     linear-gradient(180deg,#09040b,#170818,#241027,#09040b);
-}
-
-/* floating hearts */
-.hearts span{
-  position:fixed;
-  bottom:-20px;
-  color:#ff6fa8;
-  font-size:22px;
-  animation:rise 8s linear infinite;
-  opacity:.7;
-  z-index:1;
-}
-
-.hearts span:nth-child(1){left:10%; animation-delay:0s;}
-.hearts span:nth-child(2){left:25%; animation-delay:2s;}
-.hearts span:nth-child(3){left:45%; animation-delay:4s;}
-.hearts span:nth-child(4){left:65%; animation-delay:1s;}
-.hearts span:nth-child(5){left:85%; animation-delay:3s;}
-
-@keyframes rise{
-  from{transform:translateY(0) scale(.7); opacity:.8;}
-  to{transform:translateY(-110vh) scale(1.4); opacity:0;}
 }
 
 section{
@@ -57,21 +30,17 @@ section{
   align-items:center;
   flex-direction:column;
   position:relative;
+  overflow:hidden;
   border-bottom:1px solid rgba(255,105,180,.35);
 }
 
-section.active{
-  display:flex;
-}
+section.active{display:flex;}
 
 h1{
   font-family:'Great Vibes', cursive;
-  font-size:4.5rem;
+  font-size:4.8rem;
   color:#ffd1e5;
-  text-shadow:
-    0 0 10px #ff6fa8,
-    0 0 25px #ff3f8e,
-    0 0 45px #ff5fa2;
+  text-shadow:0 0 10px #ff6fa8,0 0 25px #ff3f8e,0 0 45px #ff5fa2;
   margin-bottom:20px;
 }
 
@@ -82,7 +51,7 @@ h2{
 }
 
 p{
-  max-width:750px;
+  max-width:760px;
   font-size:1.25rem;
   line-height:1.7;
   text-shadow:0 0 8px rgba(0,0,0,.5);
@@ -90,26 +59,22 @@ p{
 
 button{
   margin-top:25px;
-  padding:14px 35px;
+  padding:14px 38px;
   border-radius:30px;
-  border:1px solid rgba(255,255,255,.4);
+  border:1px solid rgba(255,255,255,.45);
   background:linear-gradient(180deg,#e06b93,#a83360);
   color:white;
   font-weight:bold;
-  font-family:'Playfair Display', serif;
   cursor:pointer;
-  box-shadow:
-    0 0 12px rgba(255,105,180,.7),
-    inset 0 0 8px rgba(255,255,255,.2);
+  box-shadow:0 0 15px rgba(255,105,180,.8), inset 0 0 8px rgba(255,255,255,.25);
   transition:.3s;
 }
 
 button:hover{
-  transform:scale(1.07);
+  transform:scale(1.08);
   background:linear-gradient(180deg,#ff8bb6,#c94475);
 }
 
-/* real decorations */
 .decor{
   position:absolute;
   z-index:2;
@@ -117,36 +82,22 @@ button:hover{
   filter:drop-shadow(0 0 15px rgba(255,105,180,.45));
 }
 
-.balloon-left{
-  left:20px;
-  top:40px;
-  width:230px;
-  animation:float 4s ease-in-out infinite;
-}
-
-.balloon-right{
-  right:20px;
-  top:40px;
-  width:230px;
-  animation:float 5s ease-in-out infinite;
-}
-
-.cake{
-  left:60px;
-  bottom:40px;
-  width:300px;
-}
-
-.flowers{
-  right:70px;
-  bottom:45px;
-  width:360px;
-}
+.balloon-left{left:20px;top:35px;width:230px;animation:float 4s ease-in-out infinite;}
+.balloon-right{right:20px;top:35px;width:230px;animation:float 5s ease-in-out infinite;}
+.cake{left:60px;bottom:40px;width:300px;}
+.flowers{right:70px;bottom:45px;width:360px;}
 
 .gift{
   width:260px;
   margin-top:35px;
-  animation:giftGlow 2s infinite alternate;
+  cursor:pointer;
+  animation:giftGlow 1.8s infinite alternate;
+  transition:.6s;
+}
+
+.gift.open{
+  transform:scale(1.25) rotate(8deg);
+  opacity:0;
 }
 
 @keyframes float{
@@ -156,32 +107,49 @@ button:hover{
 
 @keyframes giftGlow{
   from{filter:drop-shadow(0 0 10px #ff6fa8);}
-  to{filter:drop-shadow(0 0 30px #ff9fc7);}
+  to{filter:drop-shadow(0 0 35px #ff9fc7);}
 }
 
-/* gallery */
-.gallery{
+/* falling petals */
+.petal{
+  position:fixed;
+  top:-30px;
+  color:#ff7bad;
+  font-size:22px;
+  z-index:1;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+    opacity:0;
+  }
+}
+
+/* carousel */
+.carousel{
   display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
+  align-items:center;
   gap:25px;
   margin-top:25px;
 }
 
-.gallery img{
-  width:230px;
-  height:260px;
+.carousel img{
+  width:280px;
+  height:340px;
   object-fit:cover;
-  border-radius:18px;
+  border-radius:20px;
   border:2px solid #c94f82;
-  box-shadow:
-    0 0 15px rgba(255,105,180,.45),
-    0 10px 30px rgba(0,0,0,.5);
-  transition:.3s;
+  box-shadow:0 0 20px rgba(255,105,180,.6),0 10px 30px rgba(0,0,0,.55);
 }
 
-.gallery img:hover{
-  transform:scale(1.06);
+.arrow{
+  font-size:2rem;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  padding:0;
 }
 
 /* videos */
@@ -201,11 +169,12 @@ video{
   box-shadow:0 0 18px rgba(255,105,180,.45);
 }
 
-/* final heart */
+/* final */
 .big-heart{
-  font-size:6rem;
-  margin-top:30px;
+  font-size:7rem;
+  margin:25px 0;
   color:#ff8fbd;
+  cursor:pointer;
   text-shadow:0 0 30px #ff4f9a;
   animation:pulse 1.2s infinite;
 }
@@ -215,17 +184,25 @@ video{
   50%{transform:scale(1.15);}
 }
 
-@media(max-width:800px){
-  h1{font-size:3.2rem;}
+.confetti{
+  position:fixed;
+  top:-20px;
+  font-size:22px;
+  z-index:999;
+  animation:confettiFall 3s linear forwards;
+}
 
-  .balloon-left,
-  .balloon-right{
-    width:130px;
-    opacity:.75;
+@keyframes confettiFall{
+  to{
+    transform:translateY(110vh) rotate(720deg);
+    opacity:0;
   }
+}
 
-  .cake,
-  .flowers{
+@media(max-width:800px){
+  h1{font-size:3.3rem;}
+  .balloon-left,.balloon-right{width:130px;opacity:.75;}
+  .cake,.flowers{
     position:relative;
     left:auto;
     right:auto;
@@ -233,19 +210,15 @@ video{
     width:230px;
     margin-top:25px;
   }
+  .carousel img{
+    width:220px;
+    height:280px;
+  }
 }
 </style>
 </head>
 
 <body>
-
-<div class="hearts">
-  <span>❤</span>
-  <span>💕</span>
-  <span>💖</span>
-  <span>❤</span>
-  <span>💕</span>
-</div>
 
 <audio id="music" loop>
   <source src="music/happy.mp3" type="audio/mpeg">
@@ -258,9 +231,9 @@ video{
   <h1>A Special Surprise♡</h1>
   <p>I made this little gift just for you.</p>
 
-  <button onclick="startGift()">OPEN YOUR GIFT 🎁</button>
+  <button onclick="openGift()">OPEN YOUR GIFT 🎁</button>
 
-  <img src="images/gift.png" class="gift">
+  <img src="images/gift.png" class="gift" id="giftBox" onclick="openGift()">
 
   <img src="images/cake.png" class="decor cake">
   <img src="images/flowers.png" class="decor flowers">
@@ -288,11 +261,10 @@ video{
 <section id="photos">
   <h2>BEAUTIFUL MEMORIES</h2>
 
-  <div class="gallery">
-    <img src="images/photo1.jpg">
-    <img src="images/photo2.jpg">
-    <img src="images/photo3.jpg">
-    <img src="images/photo4.jpg">
+  <div class="carousel">
+    <button class="arrow" onclick="prevPhoto()">←</button>
+    <img id="mainPhoto" src="images/photo1.jpg">
+    <button class="arrow" onclick="nextPhoto()">→</button>
   </div>
 
   <button onclick="showSection('videos')">WATCH YOUR VIDEOS 🎥</button>
@@ -310,7 +282,7 @@ video{
     <video controls><source src="videos/birthday6.mp4" type="video/mp4"></video>
   </div>
 
-  <button onclick="showSection('final')">FINAL SURPRISE ✨</button>
+  <button onclick="showFinal()">FINAL SURPRISE ✨</button>
 </section>
 
 <section id="final">
@@ -324,7 +296,7 @@ video{
     begin to come true.
   </p>
 
-  <div class="big-heart">♡</div>
+  <div class="big-heart" onclick="makeWish()">♡</div>
 
   <p>
     Happy Birthday, Brechnaida. May God continue to bless you with love,
@@ -334,40 +306,110 @@ video{
 
 <script>
 const music = document.getElementById("music");
+const photos = [
+  "images/photo1.jpg",
+  "images/photo2.jpg",
+  "images/photo3.jpg",
+  "images/photo4.jpg"
+];
+
+let currentPhoto = 0;
 
 function showSection(id){
-    document.querySelectorAll("section").forEach(section=>{
-        section.classList.remove("active");
-    });
+  document.querySelectorAll("section").forEach(section=>{
+    section.classList.remove("active");
+  });
 
-    document.getElementById(id).classList.add("active");
-    window.scrollTo(0,0);
+  document.getElementById(id).classList.add("active");
+  window.scrollTo(0,0);
 }
 
-function startGift(){
-    music.play();
+function openGift(){
+  const gift = document.getElementById("giftBox");
+  gift.classList.add("open");
+
+  music.play();
+
+  setTimeout(()=>{
     showSection("message");
+  },900);
 }
 
-const videos = document.querySelectorAll("video");
+function nextPhoto(){
+  currentPhoto = (currentPhoto + 1) % photos.length;
+  document.getElementById("mainPhoto").src = photos[currentPhoto];
+}
 
-videos.forEach(video=>{
+function prevPhoto(){
+  currentPhoto = (currentPhoto - 1 + photos.length) % photos.length;
+  document.getElementById("mainPhoto").src = photos[currentPhoto];
+}
 
-    video.addEventListener("play",()=>{
-        music.pause();
+function showFinal(){
+  showSection("final");
+  confetti();
+}
+
+function makeWish(){
+  confetti();
+  alert("Your wish has been sent to the stars ✨❤️");
+}
+
+document.querySelectorAll("video").forEach(video=>{
+  video.addEventListener("play",()=>{
+    music.pause();
+
+    document.querySelectorAll("video").forEach(otherVideo=>{
+      if(otherVideo !== video){
+        otherVideo.pause();
+      }
     });
+  });
 
-    video.addEventListener("pause",()=>{
-        if(!video.ended){
-            music.play();
-        }
-    });
+  video.addEventListener("pause",()=>{
+    if(!video.ended){
+      music.play();
+    }
+  });
 
-    video.addEventListener("ended",()=>{
-        music.play();
-    });
-
+  video.addEventListener("ended",()=>{
+    music.play();
+  });
 });
+
+function createPetal(){
+  const petal = document.createElement("div");
+  petal.className = "petal";
+  petal.innerHTML = Math.random() > .5 ? "🌸" : "❤";
+  petal.style.left = Math.random() * 100 + "vw";
+  petal.style.animationDuration = (4 + Math.random() * 5) + "s";
+  petal.style.fontSize = (16 + Math.random() * 18) + "px";
+  document.body.appendChild(petal);
+
+  setTimeout(()=>{
+    petal.remove();
+  },9000);
+}
+
+setInterval(createPetal,700);
+
+function confetti(){
+  const pieces = ["🎉","✨","💖","🌸","💕"];
+
+  for(let i=0;i<50;i++){
+    const item = document.createElement("div");
+    item.className = "confetti";
+    item.innerHTML = pieces[Math.floor(Math.random()*pieces.length)];
+    item.style.left = Math.random() * 100 + "vw";
+    item.style.animationDuration = (2 + Math.random()*2) + "s";
+    item.style.fontSize = (16 + Math.random()*18) + "px";
+    document.body.appendChild(item);
+
+    setTimeout(()=>{
+      item.remove();
+    },4000);
+  }
+}
 </script>
 
 </body>
